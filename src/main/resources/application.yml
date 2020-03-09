@@ -1,0 +1,14 @@
+server:
+  port: 8050
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: spring-config-client
+          uri: http://spring-config-client:8080
+          predicates:
+          - Path=/msg
+          filters:
+          - AddResponseHeader=header-key, header-value
+          - PreGatewayFilter
